@@ -8,7 +8,6 @@ import { Icons } from './ui/Icons'
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement>{
   
 }
-
 const UserAuthForm: FC<UserAuthFormProps> = ({className, ...props}) => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
