@@ -1,5 +1,5 @@
 import Navbar from '@/components/ui/Navbar'
-import { Toaster } from '@/components/ui/toaster'
+import { Toaster } from '@/components/ui/Toaster'
 import {cn} from '@/lib/utils'
 import '@/styles/globals.css'
 import {Inter} from 'next/font/google'
