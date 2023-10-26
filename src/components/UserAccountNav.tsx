@@ -1,3 +1,4 @@
+"use client"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@radix-ui/react-dropdown-menu'
 import { User } from 'next-auth'
 import { FC } from 'react'
