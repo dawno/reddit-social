@@ -1,5 +1,11 @@
 "use client"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@radix-ui/react-dropdown-menu'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/DropdownMenu'
 import { User } from 'next-auth'
 import { FC } from 'react'
 import UserAvatar from './UserAvatar'
@@ -11,7 +17,8 @@ interface UserAccountNavProps {
 }
 
 const UserAccountNav: FC<UserAccountNavProps> = ({user}) => {
-  return ( <DropdownMenu>
+  return ( 
+  <DropdownMenu>
   <DropdownMenuTrigger>
     <UserAvatar
       user={{ name: user.name || null, image: user.image || null }}
@@ -33,11 +40,11 @@ const UserAccountNav: FC<UserAccountNavProps> = ({user}) => {
     <DropdownMenuItem asChild>
       <Link href='/'>Feed</Link>
     </DropdownMenuItem>
-
+    <DropdownMenuSeparator />
     <DropdownMenuItem asChild>
       <Link href='/r/create'>Create Community</Link>
     </DropdownMenuItem>
-
+    <DropdownMenuSeparator />
     <DropdownMenuItem asChild>
       <Link href='/settings'>Settings</Link>
     </DropdownMenuItem>
