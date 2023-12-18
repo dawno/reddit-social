@@ -6,7 +6,7 @@ import {Inter} from 'next/font/google'
 
 
 export const metadata = {
-  title: 'Reddit Social',
+  title: 'Social',
   description: 'A Reddit clone built with Next.js and TypeScript.',
 }
 
