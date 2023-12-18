@@ -11,6 +11,11 @@ datasource db {
   relationMode = "prisma"
 }
 
+enum VoteType {
+  UP
+  DOWN
+}
+
 model Account {
   id                String  @id @default(cuid())
   userId            String
@@ -39,21 +44,22 @@ model Session {
 }
 
 model User {
-  id                String      @id @default(cuid())
+  id                String         @id @default(cuid())
   name              String?
-  email             String?     @unique
+  email             String?        @unique
   emailVerified     DateTime?
-  createdSubreddits Subreddit[] @relation("CreatedBy")
-  username          String?     @unique
+  createdSubreddits Subreddit[]    @relation("CreatedBy")
+  subscriptions     Subscription[]
+  votes             Vote[]
 
-  image        String?
-  accounts     Account[]
-  sessions     Session[]
-  post         Post[]
-  comment      Comment[]
-  vote         Vote[]
-  sommentVote  CommentVote[]
-  subscription Subscription[]
+  username String? @unique
+
+  image       String?
+  accounts    Account[]
+  sessions    Session[]
+  post        Post[]
+  comment     Comment[]
+  commentVote CommentVote[]
 }
 
 model Subreddit {
@@ -61,10 +67,10 @@ model Subreddit {
   name      String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  post      Post[]
+  posts     Post[]
 
   creatorId   String?
-  Creator     User?          @relation("CreatedBy", fields: [creatorId], references: [id])
+  creator     User?          @relation("CreatedBy", fields: [creatorId], references: [id])
   subscribers Subscription[]
 
   @@index([name])
@@ -85,12 +91,12 @@ model Post {
   content     Json?
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
-  Subreddit   Subreddit @relation(fields: [subredditId], references: [id])
-  subredditId String
   author      User      @relation(fields: [authorId], references: [id])
   authorId    String
+  subreddit   Subreddit @relation(fields: [subredditId], references: [id])
+  subredditId String
   comments    Comment[]
-  Vote        Vote[]
+  votes       Vote[]
 }
 
 model Comment {
@@ -108,11 +114,6 @@ model Comment {
 
   votes     CommentVote[]
   commentId String?
-}
-
-enum VoteType {
-  UP
-  DOWN
 }
 
 model Vote {
